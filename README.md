@@ -1,5 +1,7 @@
 # ai-profile-karma
 
+[![CI](https://github.com/eliem08/ai-profile-karma/actions/workflows/ci.yml/badge.svg)](https://github.com/eliem08/ai-profile-karma/actions/workflows/ci.yml)
+
 > **Credit Karma for what AI knows about you** — see it, fix it, delete it.
 
 Your chat history, assistant "memories" and connected apps add up to a
@@ -37,3 +39,25 @@ ai-profile-karma letter --vendor "ExampleAI Inc." --law gdpr --action delete --n
 - Continuous monitoring: re-scan monthly, alert on new sensitive facts
 - One-click request sending + tracking the 30/45-day response deadlines
 - Data-broker coverage (people-search sites feeding AI agents)
+
+## Development
+
+Zero runtime dependencies; Python 3.10+.
+
+```bash
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+python -m unittest discover -s tests -t .           # unit + CLI smoke tests
+ruff check . && ruff format --check .               # lint + format
+```
+
+```
+ai_profile_karma/core.py       domain logic (pure, importable, fully tested)
+ai_profile_karma/__main__.py   CLI (`ai-profile-karma ...` / `python -m ai_profile_karma ...`)
+tests/                unit tests + generated CLI smoke tests
+```
+
+CI runs lint and tests on Ubuntu and Windows across Python 3.10, 3.12 and 3.13.
+Design, data model, trade-offs and production path: **[ARCHITECTURE.md](ARCHITECTURE.md)**.
+
+Part of the [agent-economy](https://github.com/eliem08/agent-economy) portfolio (idea #13).

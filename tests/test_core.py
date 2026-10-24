@@ -6,8 +6,10 @@ from datetime import date
 
 from ai_profile_karma import exposure_score, luhn_ok, request_letter, scan_path, scan_text
 
-CHAT = ("Hi, I live in Austin at 1200 Oak Street. My email is jane.doe@example.com and phone (512) 555-0199. "
-        "I was diagnosed with ADHD last year and my salary is 95k. My card 4111 1111 1111 1111 got declined.")
+CHAT = (
+    "Hi, I live in Austin at 1200 Oak Street. My email is jane.doe@example.com and phone (512) 555-0199. "
+    "I was diagnosed with ADHD last year and my salary is 95k. My card 4111 1111 1111 1111 got declined."
+)
 
 
 class Tests(unittest.TestCase):
