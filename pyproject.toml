@@ -23,6 +23,7 @@ dev = ["ruff>=0.6"]
 
 [project.scripts]
 ai-profile-karma = "ai_profile_karma.__main__:main"
+ai-profile-karma-web = "ai_profile_karma.web:main"
 
 [project.urls]
 Repository = "https://github.com/eliem08/ai-profile-karma"

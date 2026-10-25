@@ -7,7 +7,7 @@ from collections import defaultdict
 from .core import LAWS, exposure_score, request_letter, scan_path
 
 
-def _run(argv=None):
+def build_parser():
     ap = argparse.ArgumentParser(prog="ai-profile-karma", description="See what an AI could know about you.")
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("scan")
@@ -20,6 +20,11 @@ def _run(argv=None):
     l.add_argument("--name", required=True)
     l.add_argument("--email", required=True)
     l.add_argument("--categories", nargs="*")
+    return ap
+
+
+def _run(argv=None):
+    ap = build_parser()
     a = ap.parse_args(argv)
 
     if a.cmd == "letter":

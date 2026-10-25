@@ -21,6 +21,18 @@ ai-profile-karma scan README.md
 ai-profile-karma letter --vendor "ExampleAI Inc." --law ccpa --action delete --name "Jane Doe" --email jane@example.com
 ```
 
+## Web app and API
+
+Every command is also a JSON API endpoint and a browser form, served by the built-in web app.
+
+```bash
+ai-profile-karma-web --port 8000          # then open http://127.0.0.1:8000
+docker build -t ai-profile-karma . && docker run -p 8000:8000 -v ai-profile-karma-data:/data ai-profile-karma
+```
+
+Endpoints: `POST /api/scan`, `POST /api/letter`, plus `GET /healthz` and `GET /api/spec` (machine-readable field list).
+Files are sent as `{"name": ..., "content": ...}`, folders as `{"files": [...]}` or a base64 zip.
+
 ## Pricing
 
 Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless noted.
