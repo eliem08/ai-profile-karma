@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Profile Karma</title>
+<meta name="description" content="See what AI services know about you, then fix it or delete it.">
+<style>
+  :root { --bg:#fbfaf7; --fg:#1c1b19; --muted:#5d5a54; --card:#ffffff; --line:#e4e0d8; --accent:#2f5d50; --accent-fg:#ffffff; --code:#f1eee8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141412; --fg:#ecebe7; --muted:#a8a49c; --card:#1d1c1a; --line:#33312d; --accent:#7fc4ad; --accent-fg:#10201b; --code:#22211e; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 0 16px 64px; }
+  header { padding: 64px 0 40px; }
+  .brand { font-weight: 700; letter-spacing: .02em; color: var(--muted); text-transform: uppercase; font-size: 13px; }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 12px 0 16px; max-width: 18em; }
+  .lede { color: var(--muted); font-size: 18px; max-width: 40em; margin: 0 0 28px; }
+  .btn { display:inline-block; padding: 11px 18px; border-radius: 8px; border:1px solid var(--line); color: var(--fg); text-decoration:none; font-weight:600; }
+  .btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+  .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  section { padding: 32px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 22px; margin: 0 0 12px; }
+  .grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .plan { background: var(--card); border:1px solid var(--line); border-radius: 12px; padding: 20px; display:flex; flex-direction:column; }
+  .plan h3 { margin:0; font-size:18px; }
+  .price { font-size: 30px; font-weight: 700; margin: 8px 0 12px; }
+  .price span { display:block; font-size: 14px; font-weight: 400; color: var(--muted); }
+  .plan ul { padding-left: 18px; margin: 0 0 20px; flex:1; }
+  pre { background: var(--code); border:1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; font-size: 14px; }
+  footer { color: var(--muted); font-size: 14px; padding-top: 32px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">AI Profile Karma</div>
+    <h1>See what AI services know about you, then fix it or delete it.</h1>
+    <p class="lede">A local scan of your AI exports for personal and sensitive data, an exposure score, and ready-to-send GDPR and CCPA deletion letters.</p>
+    <a class="btn primary" href="mailto:sales@YOUR-DOMAIN.com?subject=AI Profile Karma%20trial">Start a 14-day free trial</a>
+  </header>
+  <section>
+    <h2>Who it's for</h2>
+    <p>Privacy-conscious individuals and the families they protect.</p>
+    <h2>The problem</h2>
+    <p>Chat exports and AI memories quietly collect your address, health, finances and more, and getting them removed is a chore.</p>
+  </section>
+  <section>
+    <h2>Quickstart</h2>
+    <p>Python 3.10+, no other dependencies. Your release archive includes the wheel and examples.</p>
+    <pre><code>pip install ai_profile_karma-0.1.0-py3-none-any.whl
+ai-profile-karma scan README.md
+ai-profile-karma letter --vendor &quot;ExampleAI Inc.&quot; --law ccpa --action delete --name &quot;Jane Doe&quot; --email jane@example.com</code></pre>
+  </section>
+  <section>
+    <h2>Pricing</h2>
+    <p>Every plan starts with a 14-day free trial. Prices in USD.</p>
+    <div class="grid">
+      <article class="plan">
+        <h3>Personal</h3>
+        <p class="price">$5<span>per month</span></p>
+        <ul><li>Unlimited local scans</li><li>Exposure score</li><li>Deletion letters</li></ul>
+        <a class="btn primary" href="mailto:sales@YOUR-DOMAIN.com?subject=AI Profile Karma Personal">Start free trial</a>
+      </article>
+      <article class="plan">
+        <h3>Family</h3>
+        <p class="price">$12<span>per month</span></p>
+        <ul><li>Up to 6 people</li><li>Scan history</li><li>Reminder to re-check</li></ul>
+        <a class="btn" href="mailto:sales@YOUR-DOMAIN.com?subject=AI Profile Karma Family">Start free trial</a>
+      </article>
+      <article class="plan">
+        <h3>Lifetime</h3>
+        <p class="price">$79<span>one-time</span></p>
+        <ul><li>Personal plan forever</li><li>All future letter templates</li></ul>
+        <a class="btn" href="mailto:sales@YOUR-DOMAIN.com?subject=AI Profile Karma Lifetime">Start free trial</a>
+      </article>
+    </div>
+  </section>
+  <footer>&copy; 2026 AI Profile Karma. All rights reserved. Questions: <a href="mailto:sales@YOUR-DOMAIN.com">sales@YOUR-DOMAIN.com</a></footer>
+</main>
+</body>
+</html>

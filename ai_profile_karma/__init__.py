@@ -1,4 +1,4 @@
-"""Credit Karma for what AI knows about you: see it, fix it, delete it."""
+"""AI Profile Karma: See what AI services know about you, then fix it or delete it."""
 
 from .core import *
 

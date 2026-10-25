@@ -1,16 +1,44 @@
-# ai-profile-karma
+<!-- sell-kit:start -->
+# AI Profile Karma
 
 [![CI](https://github.com/eliem08/ai-profile-karma/actions/workflows/ci.yml/badge.svg)](https://github.com/eliem08/ai-profile-karma/actions/workflows/ci.yml)
 
-> **Credit Karma for what AI knows about you** — see it, fix it, delete it.
+> **See what AI services know about you, then fix it or delete it.**
 
-Your chat history, assistant "memories" and connected apps add up to a
-detailed profile: where you live, your health worries, your salary, your
-kids' names. `ai-profile-karma` reads your own data exports, shows you
-what an AI could know about you, scores how exposed you are, and drafts the
-legal requests to correct or delete it.
+**Who it's for:** Privacy-conscious individuals and the families they protect.
 
-## What the MVP does
+**The problem:** Chat exports and AI memories quietly collect your address, health, finances and more, and getting them removed is a chore.
+
+**What you get:** A local scan of your AI exports for personal and sensitive data, an exposure score, and ready-to-send GDPR and CCPA deletion letters.
+
+## Quickstart
+
+Customers receive a release archive with the wheel and the examples. Python 3.10+ and no other dependencies.
+
+```bash
+pip install ai_profile_karma-0.1.0-py3-none-any.whl
+ai-profile-karma scan README.md
+ai-profile-karma letter --vendor "ExampleAI Inc." --law ccpa --action delete --name "Jane Doe" --email jane@example.com
+```
+
+## Pricing
+
+Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless noted.
+
+| Plan | Price | Includes |
+|---|---|---|
+| **Personal** | $5 per month | Unlimited local scans; Exposure score; Deletion letters |
+| **Family** | $12 per month | Up to 6 people; Scan history; Reminder to re-check |
+| **Lifetime** | $79 one-time | Personal plan forever; All future letter templates |
+
+To start a trial or buy a plan, email **sales@YOUR-DOMAIN.com**.
+
+## Licence
+
+Proprietary. Copyright (c) 2026 eliem08. All rights reserved. Use requires a paid plan or an active trial; see [LICENSE](LICENSE).
+<!-- sell-kit:end -->
+
+## What it does
 
 - **Scans exports** you download yourself (ChatGPT `conversations.json`,
   assistant memory dumps, any `.txt / .md / .json`)
