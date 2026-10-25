@@ -46,7 +46,7 @@ Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless
 | **Family** | $12 per month | Up to 6 people; Scan history; Reminder to re-check |
 | **Lifetime** | $79 one-time | Personal plan forever; All future letter templates |
 
-To start a trial or buy a plan, email **sales@YOUR-DOMAIN.com**.
+To start a trial or buy a plan, [request access](https://github.com/eliem08/ai-profile-karma/issues/new?title=AI%20Profile%20Karma%20trial&labels=sales).
 
 ## Licence
 
