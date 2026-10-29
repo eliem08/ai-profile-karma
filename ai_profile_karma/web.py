@@ -323,6 +323,8 @@ class Billing:
     """Self-serve purchase: Stripe Checkout -> signed webhook -> an API key shown to the buyer exactly once.
 
     Configured by env: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICES ("plan=price_id,..."),
+    STRIPE_ONE_TIME_PLANS ("plan,..." — plans that check out once with mode=payment instead of a
+    subscription; every other plan is a monthly subscription with a 14-day free trial),
     PUBLIC_URL (the address customers reach). Disabled, with /pricing saying so, until all are set.
     A cancelled subscription revokes its keys. A plaintext key waits in pending-keys.json only until the buyer
     opens the success page; the Checkout session id, known only to Stripe and the buyer, unlocks it.
@@ -337,6 +339,7 @@ class Billing:
         self.hook_secret = env.get("STRIPE_WEBHOOK_SECRET", "")
         self.public_url = env.get("PUBLIC_URL", "").rstrip("/")
         self.prices = dict(item.split("=", 1) for item in env.get("STRIPE_PRICES", "").split(",") if "=" in item)
+        self.one_time = {p.strip() for p in env.get("STRIPE_ONE_TIME_PLANS", "").split(",") if p.strip()}
         self.gate, self.pending_file = gate, data_dir / "pending-keys.json"
         self.lock = threading.Lock()
 
@@ -362,17 +365,19 @@ class Billing:
         price = self.prices.get(plan)
         if not price:
             raise BadRequest(f"unknown plan {plan!r}; choose one of {sorted(self.prices)}")
-        session = self._stripe(
-            "checkout/sessions",
-            {
-                "mode": "subscription",
-                "line_items[0][price]": price,
-                "line_items[0][quantity]": "1",
-                "metadata[plan]": plan,
-                "success_url": f"{self.public_url}/billing/success?session_id={{CHECKOUT_SESSION_ID}}",
-                "cancel_url": f"{self.public_url}/pricing",
-            },
-        )
+        form = {
+            "line_items[0][price]": price,
+            "line_items[0][quantity]": "1",
+            "metadata[plan]": plan,
+            "success_url": f"{self.public_url}/billing/success?session_id={{CHECKOUT_SESSION_ID}}",
+            "cancel_url": f"{self.public_url}/pricing",
+        }
+        if plan in self.one_time:
+            form["mode"] = "payment"  # one-time purchase: no subscription, no trial
+        else:
+            form["mode"] = "subscription"
+            form["subscription_data[trial_period_days]"] = "14"
+        session = self._stripe("checkout/sessions", form)
         return session["url"]
 
     def verify(self, body: bytes, header: str, now: float | None = None) -> dict:
@@ -567,7 +572,8 @@ def pricing_page(billing: Billing) -> str:
     return _shell(
         "Pricing",
         f"<h1>{e(SPEC['name'])} plans</h1><p>{e(SPEC['tagline'])}</p>{cards}"
-        "<p><small>Payments by Stripe. Your API key appears right after checkout.</small></p>",
+        "<p><small>Payments by Stripe. Monthly plans start with a 14-day free trial; "
+        "one-time plans do not. Your API key appears right after checkout.</small></p>",
     )
 
 
