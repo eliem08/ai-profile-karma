@@ -33,10 +33,10 @@ flowchart LR
 - **Lexicon over an ML classifier** for categories. It's transparent and offline. *Trade-off:* lower
   recall. The product adds a local small model (on-device) with the lexicon as fallback.
 
-## 5. Production architecture
-A browser extension and desktop app (local processing, Tauri), plus an optional encrypted sync of
+## 5. Future production architecture (not shipped)
+Not shipped: a browser extension and desktop app (local processing, Tauri), plus an optional encrypted sync of
 *findings metadata* only. A request-tracking backend stores vendor, request date and statutory
-deadline, and sends reminders.
+deadline, and sends reminders. The shipped product is the local scanner, score, and letter generator in §1.
 
 ## 6. Privacy
 Zero-knowledge posture: the server never sees raw exports or evidence snippets. Telemetry is opt-in
