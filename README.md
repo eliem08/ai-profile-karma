@@ -47,22 +47,27 @@ To sell self-serve, set four variables and point a Stripe webhook at `https://<y
 |---|---|
 | `STRIPE_SECRET_KEY` | `sk_live_...` |
 | `STRIPE_WEBHOOK_SECRET` | `whsec_...` |
-| `STRIPE_PRICES` | `team=price_123,business=price_456` |
+| `STRIPE_PRICES` | `personal=price_123,family=price_456,lifetime=price_789` |
+| `STRIPE_ONE_TIME_PLANS` | `lifetime` (one-time checkout, no trial; every other plan is monthly with a 14-day trial) |
 | `PUBLIC_URL` | `https://ai-profile-karma.example.com` |
+
+Copy `.env.example` to `.env` and fill in real values; it lists every variable name and nothing else.
 
 Buyers pick a plan on `/pricing`, pay on Stripe Checkout and see their API key once on the success page. Cancelling the subscription revokes the key. A selling server always requires a key.
 
 ## Pricing
 
-Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless noted.
+Monthly plans start with a 14-day free trial. Prices in USD, billed monthly unless noted.
+All plans unlock the same software in this release — higher tiers add licence scope, not gated
+features. Scan history and re-check reminders are roadmap items, not shipped features.
 
 | Plan | Price | Includes |
 |---|---|---|
 | **Personal** | $5 per month | Unlimited local scans; Exposure score; Deletion letters |
-| **Family** | $12 per month | Up to 6 people; Scan history; Reminder to re-check |
-| **Lifetime** | $79 one-time | Personal plan forever; All future letter templates |
+| **Family** | $12 per month | Everything in Personal; Household licence, up to 6 people |
+| **Lifetime** | $79 one-time | Everything in Personal, paid once — Personal plan forever, no subscription |
 
-To start a trial or buy a plan, [request access](https://github.com/eliem08/ai-profile-karma/issues/new?title=AI%20Profile%20Karma%20trial&labels=sales).
+To start a trial or buy a plan, [request access](https://github.com/eliem08/ai-profile-karma/issues/new?title=AI%20Profile%20Karma%20trial&labels=sales). Lifetime checks out as a one-time payment (no trial) and must be listed in `STRIPE_ONE_TIME_PLANS`, not sold as a subscription.
 
 ## Licence
 
